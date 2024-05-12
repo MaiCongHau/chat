@@ -9,9 +9,9 @@
 <body>
     @vite('resources/js/app.js')
 </body>
-<script>
+<script type="module">
     setTimeout(() => {
-        window.Echo.channel('testChannel')
+        Echo.channel('testChannel')
         .listen('testingEvent', (e)=>{
             console.log(e)
         })

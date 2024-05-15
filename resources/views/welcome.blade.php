@@ -8,13 +8,17 @@
 </head>
 <body>
     @vite('resources/js/app.js')
+    <div id="message">
+        @foreach ($messages as $message)
+            <span>{{ $message->messages}}</span> <br>
+        @endforeach
+    </div>
 </body>
 <script type="module">
-    setTimeout(() => {
-        Echo.channel('testChannel')
-        .listen('testingEvent', (e)=>{
-            console.log(e)
+    Echo.channel('messageChannel')
+        .listen('sendMessage', (e)=>{
+            let message = document.getElementById("message");
+            message.innerHTML += `<span>${e.message}</span> <br>`
         })
-    }, 200);
 </script>
 </html>

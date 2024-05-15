@@ -31,7 +31,12 @@ class sendMessage implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('messageChannel.'.$this->message),
+            new Channel('messageChannel'),
         ];
+    }
+
+    public function broadcastWith(): array
+    {
+        return ['message' => $this->message];
     }
 }   

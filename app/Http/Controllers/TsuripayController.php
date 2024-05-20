@@ -16,7 +16,7 @@ class TsuripayController extends Controller
         if($request->invoiceId == null){
             return view('tsuripay/scanQR');
         }
-        $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId='.$request->invoiceId);
+        $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId=33583');
 
         if( $response->getStatusCode() == 200 ){
             $body = $response->getBody()->getContents(); // Get the response body

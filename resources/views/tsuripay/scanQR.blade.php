@@ -19,6 +19,7 @@
 
             // Stop the camera and close the QR reader
             html5QrCode.stop().then((ignore) => {
+                alert(6666)
                 const myArray = decodedText.split(",");
             
                 // Redirect to the URL encoded in the QR code

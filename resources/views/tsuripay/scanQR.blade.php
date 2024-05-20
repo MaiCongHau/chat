@@ -28,7 +28,6 @@
                 window.location.href = '/tsuripay?invoiceId=' + myArray[2];
 
             }).catch((err) => {
-                document.getElementById('qr-reader-results').innerText = `err ${}`;
                 // Stop failed, handle it.
                 console.error(`Unable to stop scanning, error: ${err}`);
             });

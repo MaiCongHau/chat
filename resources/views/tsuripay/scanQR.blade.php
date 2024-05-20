@@ -16,9 +16,10 @@
             // Handle the result here
             console.log(`Scan result: ${decodedText}`);
             document.getElementById('qr-reader-results').innerText = `Scan result: ${decodedText}`;
+            const myArray = str.split(",");
             
             // Redirect to the URL encoded in the QR code
-            window.location.href = decodedText;
+            window.location.href = '/tsuripay?invoiceId=' + myArray[2];
         }
 
         function onScanFailure(error) {

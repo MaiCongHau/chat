@@ -13,7 +13,7 @@ class TsuripayController extends Controller
         $client = new Client([
             'verify' => false,
         ]);
-        if($request->inoviceId == null){
+        if($request->invoiceId == null){
             return view('tsuripay/scanQR');
         }
         $response = $client->get('https://mizuno-biz.valentin4.vm/api/tsuripay/info/invoice?invoiceId=1882702');

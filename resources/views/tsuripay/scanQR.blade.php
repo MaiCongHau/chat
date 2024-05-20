@@ -18,19 +18,10 @@
             console.log(`Scan result: ${decodedText}`);
             document.getElementById('qr-reader-results').innerText = `Scan result222: ${decodedText}`;
 
-            // Stop the camera and close the QR reader
-            html5QrCode.stop().then((ignore) => {
-                document.getElementById('qr-reader-results').innerText = `test ${decodedText}`;
-
-                const myArray = decodedText.split(",");
+            const myArray = decodedText.split(",");
             
-                // Redirect to the URL encoded in the QR code
-                window.location.href = '/tsuripay?invoiceId=' + myArray[2];
-
-            }).catch((err) => {
-                // Stop failed, handle it.
-                console.error(`Unable to stop scanning, error: ${err}`);
-            });
+            // Redirect to the URL encoded in the QR code
+            window.location.href = '/tsuripay?invoiceId=' + myArray[2];
         }
 
         function onScanFailure(error) {

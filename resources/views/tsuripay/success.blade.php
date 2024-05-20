@@ -8,5 +8,6 @@
 </head>
 <body>
     <H1>精算処理-成功</H1>
+    <a href="{{route('tsuripay.index')}}">Back</a>
 </body>
 </html>

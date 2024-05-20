@@ -8,6 +8,6 @@
 </head>
 <body>
     <H1>Fail</H1>
-    <a href="">Back</a>
+    <a href="{{route('tsuripay.index')}}">Back</a>
 </body>
 </html>

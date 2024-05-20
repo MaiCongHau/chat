@@ -16,7 +16,7 @@ class TsuripayController extends Controller
         if($request->invoiceId == null){
             return view('tsuripay/scanQR');
         }
-        $response = $client->get('https://mizuno-biz.valentin4.vm/api/tsuripay/info/invoice?invoiceId=1882702');
+        $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId='.$request->invoiceId);
 
         if( $response->getStatusCode() == 200 ){
             $body = $response->getBody()->getContents(); // Get the response body
@@ -54,7 +54,7 @@ class TsuripayController extends Controller
         ];
         $client = new Client([
             'verify' => false,
-            'base_uri' => 'https://mizuno-biz.valentin4.vm',
+            'base_uri' => 'https://stg.bizmanager.jp/',
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer your-token', // Replace with your actual token

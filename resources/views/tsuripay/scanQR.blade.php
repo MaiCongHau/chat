@@ -11,13 +11,16 @@
     <div id="qr-reader-results"></div>
 
     <script>
+        let html5QrCode = new Html5Qrcode("qr-reader");
+
         function onScanSuccess(decodedText, decodedResult) {
             // Handle the result here
             console.log(`Scan result: ${decodedText}`);
-            document.getElementById('qr-reader-results').innerText = `Scan result: ${decodedText}`;
+            document.getElementById('qr-reader-results').innerText = `Scan result123: ${decodedText}`;
             
             // Stop the camera and close the QR reader
             html5QrCode.stop().then((ignore) => {
+                alert(666)
                 const myArray = decodedText.split(",");
             
                 // Redirect to the URL encoded in the QR code
@@ -26,6 +29,7 @@
                 // Stop failed, handle it.
                 console.error(`Unable to stop scanning, error: ${err}`);
             });
+            alert(99)
         }
 
         function onScanFailure(error) {
@@ -33,7 +37,6 @@
             console.warn(`QR code scan error: ${error}`);
         }
 
-        let html5QrCode = new Html5Qrcode("qr-reader");
 
         html5QrCode.start(
             { facingMode: "environment" }, // default camera

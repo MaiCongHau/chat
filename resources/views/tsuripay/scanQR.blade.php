@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
-    <!-- Include the html5-qrcode library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js" integrity="sha512-r6rDA7W6ZeQhvl8S7yRVQUKVHdexq+GAlNkNNqVC7YyIV+NwqCTJe2hDWCiffTyRNOeGEzRRJ9ifvRm/HCzGYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
 <body>
     <div id="qr-reader" style="width: 500px"></div>
@@ -16,18 +15,14 @@
             // Handle the result here
             console.log(`Scan result: ${decodedText}`);
             document.getElementById('qr-reader-results').innerText = `Scan result: ${decodedText}`;
-
+            
             // Stop the camera and close the QR reader
             html5QrCode.stop().then((ignore) => {
-                document.getElementById('qr-reader-results').innerText = `test ${decodedText}`;
-
                 const myArray = decodedText.split(",");
             
                 // Redirect to the URL encoded in the QR code
                 window.location.href = '/tsuripay?invoiceId=' + myArray[2];
-
             }).catch((err) => {
-                document.getElementById('qr-reader-results').innerText = `err ${err}`;
                 // Stop failed, handle it.
                 console.error(`Unable to stop scanning, error: ${err}`);
             });
@@ -38,22 +33,19 @@
             console.warn(`QR code scan error: ${error}`);
         }
 
-        // Ensure the Html5Qrcode class is available before using it
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let html5QrCode = new Html5Qrcode("qr-reader");
+        let html5QrCode = new Html5Qrcode("qr-reader");
 
-            html5QrCode.start(
-                { facingMode: "environment" }, // default camera
-                {
-                    fps: 10,    // Optional, frame per seconds for qr code scanning
-                    qrbox: { width: 250, height: 250 }  // Optional, if you want bounded box UI
-                },
-                onScanSuccess,
-                onScanFailure
-            ).catch((err) => {
-                // Start failed, handle it
-                console.error(`Unable to start scanning, error: ${err}`);
-            });
+        html5QrCode.start(
+            { facingMode: "environment" }, // default camera
+            {
+                fps: 10,    // Optional, frame per seconds for qr code scanning
+                qrbox: { width: 250, height: 250 }  // Optional, if you want bounded box UI
+            },
+            onScanSuccess,
+            onScanFailure
+        ).catch((err) => {
+            // Start failed, handle it
+            console.error(`Unable to start scanning, error: ${err}`);
         });
     </script>
 </body>

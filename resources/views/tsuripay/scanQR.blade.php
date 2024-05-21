@@ -21,13 +21,6 @@
             // Handle the result here
             console.log(`Scan result: ${decodedText}`);
             document.getElementById('qr-reader-results').innerText = `Scan result222: ${decodedText}`;
-            setTimeout(() => {
-                html5QrCode.stop().then(ignore => {
-                    console.log("QR Code scanning stopped");
-                }).catch(err => {
-                    console.error("Error when stopping QR Code scanning", err);
-                });
-            }, 1000); // Thử với một khoảng thời gian 1 giây
 
             const myArray = decodedText.split(",");
 

@@ -16,15 +16,20 @@ class TsuripayController extends Controller
         if($request->invoiceId == null){
             return view('tsuripay/scanQR');
         }
-        $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId=33583');
+        $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId='.$request->invoiceId);
+        try {
+            if( $response->getStatusCode() == 200 ){
+                $body = $response->getBody()->getContents(); // Get the response body
+                $data = json_decode($body, true); // Decode JSON response
+                return view('tsuripay/payment-method', $data);
+            }    
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return view('tsuripay/index');
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            return view('tsuripay/fail');
+            return view('tsuripay/index');
+        }
 
-        if( $response->getStatusCode() == 200 ){
-            $body = $response->getBody()->getContents(); // Get the response body
-            $data = json_decode($body, true); // Decode JSON response
-            return view('tsuripay/payment-method', $data);
-        }    
-
-        return view('tsuripay/index');
     }
 
     public function paymentMethod(Request $request)
@@ -69,11 +74,11 @@ class TsuripayController extends Controller
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
             return view('tsuripay/fail');
-            dd(json_decode($responseBodyAsString, TRUE));
+            // dd(json_decode($responseBodyAsString, TRUE));
         }
         catch (\GuzzleHttp\Exception\RequestException $e) {
             return view('tsuripay/fail');
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
         $body = $response->getBody();
         $data = json_decode($body, true);

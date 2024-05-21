@@ -9,15 +9,15 @@ use GuzzleHttp\Client;
 class TsuripayController extends Controller
 {
     public function index(Request $request)
-    {   
+    {  
         $client = new Client([
             'verify' => false,
         ]);
         if($request->invoiceId == null){
             return view('tsuripay/scanQR');
         }
-        $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId='.$request->invoiceId);
         try {
+            $response = $client->get('https://stg.bizmanager.jp/api/tsuripay/info/invoice?invoiceId='.$request->invoiceId);
             if( $response->getStatusCode() == 200 ){
                 $body = $response->getBody()->getContents(); // Get the response body
                 $data = json_decode($body, true); // Decode JSON response
@@ -28,7 +28,6 @@ class TsuripayController extends Controller
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             return view('tsuripay/index');
         }
-
     }
 
     public function paymentMethod(Request $request)

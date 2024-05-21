@@ -16,11 +16,11 @@
         <input name="paymentMethod" type="hidden" value="{{ $payment_method }}">
         <input class="outPrice" name="out_price" type="hidden">
 
-        User name <input type="text" disabled value="{{ $data['user_name'] }}"> <br>
-        Title <input type="text" disabled value="{{ $data['title'] }}"> <br>
-        Price <input class="price" type="text" disabled value="{{ $data['price'] }}"> <br>
-        User Price <input class="userPrice" type="number" name="user_price"> <br>
-        Out price <input class="outPrice" type="text" disabled> <br>
+        支払方法 <input type="text" disabled value="{{ $data['user_name'] }}"> <br>
+        区分 <input type="text" disabled value="{{ $data['title'] }}"> <br>
+        精算金額 <input class="price" type="text" disabled value="{{ $data['price'] }}"> <br>
+        お預かり <input class="userPrice" type="number" name="user_price"> <br>
+        おつり <input class="outPrice" type="text" disabled> <br>
         <button class="btnSubmitPayment">Submit</button>
     </form>
 </body>

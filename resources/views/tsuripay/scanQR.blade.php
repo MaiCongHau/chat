@@ -21,11 +21,6 @@
             // Handle the result here
             console.log(`Scan result: ${decodedText}`);
             document.getElementById('qr-reader-results').innerText = `Scan result222: ${decodedText}`;
-
-            const myArray = decodedText.split(",");
-
-            // Redirect to the URL encoded in the QR code
-            window.location.href = '/tsuripay?invoiceId=' + myArray[2];
             setTimeout(() => {
                 html5QrCode.stop().then(ignore => {
                     console.log("QR Code scanning stopped");
@@ -34,6 +29,10 @@
                 });
             }, 1000); // Thử với một khoảng thời gian 1 giây
 
+            const myArray = decodedText.split(",");
+
+            // Redirect to the URL encoded in the QR code
+            window.location.href = '/tsuripay?invoiceId=' + myArray[2];
         }
 
         function onScanFailure(error) {

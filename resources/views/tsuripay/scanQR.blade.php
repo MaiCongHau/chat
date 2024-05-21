@@ -17,18 +17,19 @@
             // Handle the result here
             console.log(`Scan result: ${decodedText}`);
             document.getElementById('qr-reader-results').innerText = `Scan result222: ${decodedText}`;
-
-            const myArray = decodedText.split(",");
             
-            // Redirect to the URL encoded in the QR code
-            window.location.href = '/tsuripay?invoiceId=' + myArray[2];
-            
-            // Stop the QR code scanner
+               // Stop the QR code scanner
             html5QrCode.stop().then(ignore => {
                 console.log("QR Code scanning stopped");
             }).catch(err => {
                 console.error("Error when stopping QR Code scanning", err);
             });
+
+            const myArray = decodedText.split(",");
+            
+            // Redirect to the URL encoded in the QR code
+            window.location.href = '/tsuripay?invoiceId=' + myArray[2];
+
         }
 
         function onScanFailure(error) {

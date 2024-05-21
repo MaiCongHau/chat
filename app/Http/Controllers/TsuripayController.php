@@ -26,7 +26,6 @@ class TsuripayController extends Controller
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             return view('tsuripay/index');
         } catch (\GuzzleHttp\Exception\RequestException $e) {
-            return view('tsuripay/fail');
             return view('tsuripay/index');
         }
 
